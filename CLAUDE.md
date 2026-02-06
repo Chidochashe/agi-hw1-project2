@@ -48,3 +48,22 @@ A task management single-page app built with React + TypeScript + Vite. No backe
 - Skip writing on initial mount (use a `useRef` guard) to avoid overwriting potentially recoverable data
 - Validate data shape on load with a type guard — don't trust `JSON.parse` output blindly
 - Wrap `localStorage.setItem` in try/catch to handle `QuotaExceededError`
+
+## Design System
+
+- Fonts: Fraunces (display/headings) + DM Sans (body) — loaded via Google Fonts in `index.html`
+- Color palette defined as CSS variables in `src/index.css` — warm cream bg, sage green accent, earthy priority colors
+- All colors/spacing/shadows/radii must use CSS variables (e.g., `var(--accent)`, `var(--radius)`)
+- Animations: `fadeIn`, `fadeInUp`, `scaleIn` keyframes defined globally in `index.css`
+- Task items use staggered animation via `animationDelay` based on list index
+
+## Verification
+
+- Always run `npx tsc --noEmit` then `npx vite build` after changes to verify before committing
+- GitHub repo: `Chidochashe/agi-hw1-project2` — push via `gh` CLI (authenticated as Chidochashe)
+
+## Component Patterns
+
+- `TaskItem` takes an `index` prop for staggered animation delay — must be passed from `TaskList`
+- `Header` takes `taskCount` for the subtitle display
+- `TaskModal` is conditionally rendered (`{modalOpen && <TaskModal />}`) — state resets on unmount
