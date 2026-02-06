@@ -31,3 +31,20 @@ A task management single-page app built with React + TypeScript + Vite. No backe
 - Priority levels: `'low' | 'medium' | 'high'`
 - Dates stored as ISO strings (`YYYY-MM-DD` for dueDate, full ISO for timestamps)
 - Task IDs via `crypto.randomUUID()`
+- Use `useCallback` for all handler functions returned from hooks or passed as props
+- Use `useMemo` for derived/computed data (e.g., filtered task lists)
+- Use `toSorted()` instead of `.sort()` to avoid mutating arrays
+
+## Accessibility Requirements
+
+- Modals must have `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, focus trap (Tab cycling), and Escape key to close
+- Interactive non-button elements (clickable divs) must have `role="button"`, `tabIndex={0}`, and `onKeyDown` for Enter/Space
+- All form inputs need either a wrapping `<label>` or `aria-label`
+- Checkboxes need descriptive `aria-label` attributes
+- Elements revealed on hover must also be visible via `:focus-within`
+
+## localStorage Patterns
+
+- Skip writing on initial mount (use a `useRef` guard) to avoid overwriting potentially recoverable data
+- Validate data shape on load with a type guard — don't trust `JSON.parse` output blindly
+- Wrap `localStorage.setItem` in try/catch to handle `QuotaExceededError`
