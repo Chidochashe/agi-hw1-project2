@@ -1,0 +1,10 @@
+.app {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.container {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}

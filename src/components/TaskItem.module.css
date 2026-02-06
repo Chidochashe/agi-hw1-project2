@@ -1,0 +1,136 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.1s;
+}
+
+.item:hover {
+  background: #f9fafb;
+}
+
+.item:hover .deleteButton,
+.item:focus-within .deleteButton {
+  opacity: 1;
+}
+
+.completed {
+  opacity: 0.5;
+}
+
+.completed .title {
+  text-decoration: line-through;
+}
+
+.checkbox {
+  width: 1.125rem;
+  height: 1.125rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  accent-color: #2563eb;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.title {
+  font-size: 0.9375rem;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.priority {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.1875rem 0.5rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.medium {
+  background: #fef9c3;
+  color: #ca8a04;
+}
+
+.low {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.dueDate {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.overdue {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.deleteButton:hover {
+  color: #dc2626;
+}
+
+@media (max-width: 480px) {
+  .item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .content {
+    order: 1;
+    flex-basis: calc(100% - 2.5rem);
+  }
+
+  .priority {
+    order: 2;
+  }
+
+  .dueDate {
+    order: 3;
+  }
+
+  .deleteButton {
+    order: 4;
+    opacity: 1;
+  }
+}
