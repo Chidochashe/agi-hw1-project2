@@ -3,6 +3,7 @@ import styles from './TaskItem.module.css';
 
 interface TaskItemProps {
   task: Task;
+  index: number;
   onToggle: (id: string) => void;
   onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
@@ -16,14 +17,17 @@ function isOverdue(dueDate?: string): boolean {
 
 function formatDate(dateStr: string): string {
   const date = new Date(dateStr + 'T00:00:00');
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
-export function TaskItem({ task, onToggle, onEdit, onDelete }: TaskItemProps) {
+export function TaskItem({ task, index, onToggle, onEdit, onDelete }: TaskItemProps) {
   const overdue = !task.completed && isOverdue(task.dueDate);
 
   return (
-    <div className={`${styles.item} ${task.completed ? styles.completed : ''}`}>
+    <div
+      className={`${styles.item} ${task.completed ? styles.completed : ''}`}
+      style={{ animationDelay: `${index * 0.04}s` }}
+    >
       <input
         type="checkbox"
         className={styles.checkbox}

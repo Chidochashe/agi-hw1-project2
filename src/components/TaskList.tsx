@@ -18,7 +18,8 @@ export function TaskList({ tasks, filters, onToggle, onEdit, onDelete }: TaskLis
   if (tasks.length === 0) {
     return (
       <div className={styles.empty}>
-        <p>No tasks yet. Click "Add Task" to get started.</p>
+        <div className={styles.emptyIcon}>&#9744;</div>
+        <p>Nothing here yet. Add your first task to get started.</p>
       </div>
     );
   }
@@ -26,6 +27,7 @@ export function TaskList({ tasks, filters, onToggle, onEdit, onDelete }: TaskLis
   if (filtered.length === 0) {
     return (
       <div className={styles.empty}>
+        <div className={styles.emptyIcon}>&#8981;</div>
         <p>No tasks match the current filters.</p>
       </div>
     );
@@ -33,10 +35,11 @@ export function TaskList({ tasks, filters, onToggle, onEdit, onDelete }: TaskLis
 
   return (
     <div className={styles.list} role="list" aria-label="Task list">
-      {filtered.map((task) => (
+      {filtered.map((task, index) => (
         <TaskItem
           key={task.id}
           task={task}
+          index={index}
           onToggle={onToggle}
           onEdit={onEdit}
           onDelete={onDelete}

@@ -42,7 +42,7 @@ export default function App() {
   return (
     <div className={styles.app}>
       <div className={styles.container}>
-        <Header onAddTask={handleAddClick} />
+        <Header onAddTask={handleAddClick} taskCount={tasks.length} />
         <FilterBar filters={filters} onChange={setFilters} />
         <TaskList
           tasks={tasks}
